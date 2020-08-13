@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4e043395-f1a2-4217-8d75-72fe93200744" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1g2IeGwVYXB7hk3VCcCQVIrYaQy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Android/线程与异步通信" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Android/线程与异步通信" />
+      <recent name="$PROJECT_DIR$/Android/线程与异步通信/Handler消息机制" />
+      <recent name="$PROJECT_DIR$/Android/第三方库学习" />
+      <recent name="$PROJECT_DIR$/Android/View相关/View绘制流程" />
+      <recent name="$PROJECT_DIR$/Android/View相关/View嵌套滑动" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4e043395-f1a2-4217-8d75-72fe93200744" name="Default Changelist" comment="" />
+      <created>1597306353902</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597306353902</updated>
+      <workItem from="1597306355368" duration="857000" />
+      <workItem from="1597308416877" duration="838000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="543" y="62" width="824" height="941" key="CommitChangelistDialog2" timestamp="1597306467697">
+      <screen x="0" y="27" width="1920" height="1005" />
+    </state>
+    <state x="543" y="62" width="824" height="941" key="CommitChangelistDialog2/0.27.1920.1005@0.27.1920.1005" timestamp="1597306467697" />
+    <state x="752" y="442" width="406" height="181" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597309241917">
+      <screen x="0" y="27" width="1920" height="1005" />
+    </state>
+    <state x="752" y="442" width="406" height="181" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1005@0.27.1920.1005" timestamp="1597309241917" />
+  </component>
+</project>

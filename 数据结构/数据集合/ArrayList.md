@@ -1,5 +1,9 @@
 原文](https://www.jianshu.com/p/192148ddab9f)
 
+
+
+[TOC]
+
 ### 概述
 
 ArrayList是一个动态数组，它的底层数据结构是数组，他实现了 `List<E>、RandomAccess、 Cloneable、java.io.Serializable`接口，其中`RandomAccess`代表了其拥有**随机快速访问**的能力，`ArrayList'可以以O(1)的时间复杂度去根据下标访问元素。
@@ -350,11 +354,5 @@ public static native void arraycopy(Object src,  int  srcPos,
 ### 总结
 
 1. 增删改查中 增删操作都设计到数组的复制，所以效率会低。 而 改、查都是很高效的操作。
-
 2. 因此，结合特点，在使用中，以Android中最常用的展示列表为例，列表滑动时需要展示每一个Item（element）的数组，**所以 查 操作是最高频的**。相对来说，**增操作 只有在列表加载更多时才会用到** ，而且是在列表尾部插入，所以也不需要移动数据的操作。而删操作则更低频。 故选用ArrayList作为保存数据的结构。
-
-   
-
-   
-
 3. 

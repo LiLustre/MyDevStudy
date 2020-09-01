@@ -30,7 +30,7 @@ ArrayList是一个动态数组，它的底层数据结构是数组，他实现�
 
 源码如下
 
-```
+```java
     //默认构造函数里的空数组
     private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
     
@@ -76,5 +76,38 @@ ArrayList是一个动态数组，它的底层数据结构是数组，他实现�
             this.elementData = EMPTY_ELEMENTDATA;
         }
     }
+```
+
+`Collection.toArray()`：这个方法，在Collection子类各大集合的源码中，高频使用了这个方法去获得某Collection的所有元素
+
+`Arrays.copyOf(elementData, size, Object[].class)`：就是根据class的类型来决定是new 还是反射去构造一个泛型数组，同时利用native函数，批量赋值元素至新数组中
+
+```java
+    public static <T,U> T[] copyOf(U[] original, int newLength, Class<? extends T[]> newType) {
+        @SuppressWarnings("unchecked")
+        //根据class的类型来决定是new 还是反射去构造一个泛型数组
+        T[] copy = ((Object)newType == (Object)Object[].class)
+            ? (T[]) new Object[newLength]
+            : (T[]) Array.newInstance(newType.getComponentType(), newLength);
+        //利用native函数，批量赋值元素至新数组中。
+        System.arraycopy(original, 0, copy, 0,
+                         Math.min(original.length, newLength));
+        return copy;
+    }
+```
+
+``System.arraycopy`：也是一个很高频的函数 
+
+```java
+/*
+	 * @param      src     数据源，要cope的数据源
+     * @param      srcPos  数据源要cope的数组的起始索引
+     * @param      dest     要copy 到的目的数据结构
+     * @param      destPos 目的数据结构的存储copy数据的开始索引
+     * @param      length   要cope的数据源的长度
+*/
+public static native void arraycopy(Object src,  int  srcPos,
+                                        Object dest, int destPos,
+                                        int length);
 ```
 

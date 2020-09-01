@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4e043395-f1a2-4217-8d75-72fe93200744" name="Default Changelist" comment="" />
+    <list default="true" id="4e043395-f1a2-4217-8d75-72fe93200744" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Android/framework/Android 屏幕刷新机制-Choreographer.md" beforeDir="false" afterPath="$PROJECT_DIR$/Android/framework/Android 屏幕刷新机制-Choreographer.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/数据结构/数据结构基础.md" beforeDir="false" afterPath="$PROJECT_DIR$/数据结构/数据结构基础.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +22,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Android/线程与异步通信" />
+    <property name="last_opened_file_path" value="$USER_HOME$/lize/pythonProject/normandy-apollo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -42,6 +45,7 @@
       <updated>1597306353902</updated>
       <workItem from="1597306355368" duration="857000" />
       <workItem from="1597308416877" duration="838000" />
+      <workItem from="1597367057747" duration="20000" />
     </task>
     <servers />
   </component>
@@ -53,6 +57,10 @@
       <screen x="0" y="27" width="1920" height="1005" />
     </state>
     <state x="543" y="62" width="824" height="941" key="CommitChangelistDialog2/0.27.1920.1005@0.27.1920.1005" timestamp="1597306467697" />
+    <state x="743" y="287" width="424" height="491" key="FileChooserDialogImpl" timestamp="1597367077860">
+      <screen x="0" y="27" width="1920" height="1005" />
+    </state>
+    <state x="743" y="287" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1005@0.27.1920.1005" timestamp="1597367077860" />
     <state x="752" y="442" width="406" height="181" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597309241917">
       <screen x="0" y="27" width="1920" height="1005" />
     </state>

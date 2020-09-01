@@ -1,37 +1,38 @@
 <font size=3>
 
+[TOC]
+
+
+
 #### 一、Android 屏幕刷新显示机制概述
-    
-     
- 
-     
- 
+
 - **显示系统中的三要素**
-    
+  
     在一个典型的显示系统中，一般包括CPU、GPU、display三个部分
     
      CPU：负责计算数据，把计算好数据交给GPU,
-     
+    
     GPU：会对图形数据进行渲染，渲染好后放到buffer里存起来
     
      display（屏幕）：负责把buffer里的数据呈现到屏幕上  
     
 - **屏幕刷新过程**
-    
+  
     显示过程，简单的说就是CPU/GPU准备好数据，存入buffer，display从buffer中取出数据，然后一行一行显示出来。
      所以屏幕刷新的三个步骤：
      1、CPU 计算屏幕数据
      2、GPU 进一步处理并缓存
      3、最后Display从缓存中取出屏幕数据并显示
-       
+    
     对应Android 而言，CPU的计算屏幕数据指的就是Android的View树绘制流程，就是从DecorView开始遍历View，执行测量、布局、绘制三大流程。   
     
+
 ![屏幕刷新机制](https://note.youdao.com/yws/api/personal/file/3532FF97254541279E01D6B4A09F18D7?method=getImage&version=9173&cstk=qPiLh-_D)
     
 - 流程解释 
-    
+  
      **底层**：
-    
+        
     Display 可以理解为屏幕，底层已固定频率发出一个Vsync信号， 这个固定频率就是每16ms发出一个Vsync信号。
     
     继续看图，Display 黄色的这一行里有一些数字：0, 1, 2, 3, 4。，可以看到每次屏幕刷新信号到了的时候，数字就会变化，所以这些数字其实可以理解成每一帧屏幕显示的画面。也就是说，屏幕每一帧的画面可以持续 16.6ms，当过了 16.6ms，底层就会发出一个屏幕刷新信号，而屏幕就会去显示下一帧的画面。
@@ -44,7 +45,7 @@
 
     CPU 跟 Display 是不同的硬件，它们是可以并行工作的。要理解的一点是，我们写的代码，只是控制让 CPU 在接收到屏幕刷新信号的时候开始去计算下一帧的画面工作。而底层在每一次屏幕刷新信号来的时候都会去切换这一帧的画面，这点我们是控制不了的，是底层的工作机制。之所以要讲这点，是因为，当我们的 app 界面没有必要再刷新时（比如用户不操作了，当前界面也没动画），这个时候，我们 app 是接收不到屏幕刷新信号的，所以也就不会让 CPU 去计算下一帧画面数据，但是底层仍然会以固定的频率来切换每一帧的画面，只是它后面切换的每一帧画面都一样，所以给我们的感觉就是屏幕没刷新。
 - **Android 每隔16ms 刷新一次屏幕**
- 
+
     指底层每隔16毫秒从buffer中取出需要显示的数据并显示在屏幕上
 
 
@@ -52,20 +53,20 @@
     从View的的invalidate()、requestLayout()、Activity的加载中的流程可以看出都会调用ViewRootImpl的scheduleTraversals()方法，
     scheduleTraversals()方法会使用Choreographer来执行一个Runable（mTraversalRunnable），
     这个Runable（mTraversalRunnable）内的run方法内包括View树的测量、布局、绘制三大流程。
-    
+
 -  **View#invalidate()**
-    
+   
     invalidate()方法会调用view父布局的invalidateChild，invalidateChild内也可以看到内部其实是有一个 do{}while() 循环来不断寻找 mParent，这个mParent是ViewGroup也可以是ViewRootImpl，然后调用mParent的invalidateChildInParent()所以最终才会走到 ViewRootImpl 里去。 ViewRootImpl的invalidateChildInParent()方法通过invalidate()最终调用到scheduleTraversals().
 - **View#requestLayout()**
-    
+  
     从View的requestLayout()方法开始，会逐级向上调用requestLayout()方法，也就是调用view调用自己mParent的requestLayout()，mParent的requestLayout()内再调用自己mParent的requestLayout()，最终调用到ViewRootImpl的requestLayout()方法，View的requestLayout内部调用scheduleTraversals()。
 
 - **Activity的加载**
-    
+  
     从ActivityThread的handleLaunchActivity开始，其内部会依次调用Activity的生命周期函数:onCreate()、onStart()、onResume(),然后WindowManager会实例化一个ViewRootImpl，并调用ViewRootImpl的setView()将DecorView和ViewRootImpl绑定，绑定过程中调用ViewRootImpl的requestLayout(),最终调用到scheduleTraversals()
 
 - **ViewRootImpl#scheduleTraversals()**
-    
+  
     1、判断mTraversalScheduled为false时执行，并将mTraversalScheduled设置为True
     
     2、设置同步屏障
@@ -95,7 +96,7 @@
 
 
 - **Choreographer#postCallback()**
-    
+  
     1、因为 postCallback() 调用 postCallbackDelayed() 时传了 delay = 0 进去，所以在 postCallbackDelayedInternal() 里面会先根据当前时间戳将这个 Runnable 保存到一个 mCallbackQueue 队列里，这个队列跟 MessageQueue 很相似，里面待执行的任务都是根据一个时间戳来排序。   Choreographer 里有多个队列，而第一个参数 Choreographer.CALLBACK_TRAVERSAL 这个参数是用来区分队列的，可以理解成各个队列的 key 值。然后走了 scheduleFrameLocked() 方法这边，看看做了些什么：
 
 ```
@@ -140,7 +141,7 @@
     }
 ```
 - **scheduleFrameLocked**
-   
+  
     判断是否是在主线程，如果在主线程则直接执行scheduleVsyncLocked();，否则使用Handler切换线程并将该消息放入队列头，设置最高优先级保证第一时间Handler处理该消息
 ```
     private void scheduleFrameLocked(long now) {
@@ -207,11 +208,11 @@
     
 ```
 - **Choreographer#scheduleVsyncLocked()**
-    
+  
     最终执行DisplayEventReceiver的scheduleVsync，接收Vsync信号，并开始处理UI，
 
 
-    
+​    
 >FrameDisplayEventReceiver继承自DisplayEventReceiver接收底层的VSync信号开始处理UI过程。
 > VSync信号由SurfaceFlinger实现并定时发送。FrameDisplayEventReceiver收到信号后，调用onVsync方法组织消息发送到主线程处理。
 > 这个消息主要内容就是run方法里面的doFrame了，这里mTimestampNanos是信号到来的时间参数。
@@ -329,7 +330,7 @@ void doFrame(long frameTimeNanos, int frame) {
     
 ```
 - **调用流程梳理**
-   
+  
      1、我们知道一个 View 发起刷新的操作时，最终是走到了 ViewRootImpl 的 scheduleTraversals() 里去，然后这个方法会将遍历绘制 View 树的操作 performTraversals() 封装到 Runnable 里，传给 Chorerographer，以当前的时间戳放进一个 mCallbackQueue 队列里，然后调用了 native 层的方法向底层注册监听下一个屏幕刷新信号事件。
     2、当下一个屏幕刷新信号发出的时候，如果我们 app 有对这个事件进行监听，那么底层它就会回调我们 app 层的 onVsync() 方法来通知。当 onVsync() 被回调时，会发一个 Message 到主线程，将后续的工作切到主线程来执行。
     3、切到主线程的工作就是去 mCallbackQueue 队列里根据时间戳将之前放进去的 Runnable 取出来执行，而这些 Runnable 有一个就是遍历绘制 View 树的操作 performTraversals()。在这次的遍历操作中，就会去绘制那些需要刷新的 View。

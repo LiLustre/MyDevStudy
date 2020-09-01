@@ -4,13 +4,13 @@
 
 ArrayList是一个动态数组，它的底层数据结构是数组，他实现了 `List<E>、RandomAccess、 Cloneable、java.io.Serializable`接口，其中`RandomAccess`代表了其拥有**随机快速访问**的能力，`ArrayList'可以以O(1)的时间复杂度去根据下标访问元素。
 
-- `底层数据结构`：底层数据结构是数组
+- 底层数据结构：底层数据结构是数组
 
-- `ArrayList容量`：
+- ArrayList容量：
 
   因为它底层数据结构是数组，所以可想而知，它是有一个容量的（数组的`length`），当集合中的元素超出这个容量，便会进行扩容操作。
 
-- `ArrayList扩容`：
+- ArrayList扩容：
 
 1. 已知元素个数，指定初始容量，减少扩容次数：
 

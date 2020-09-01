@@ -78,9 +78,9 @@ ArrayList是一个动态数组，它的底层数据结构是数组，他实现�
     }
 ```
 
-`Collection.toArray()`：这个方法，在Collection子类各大集合的源码中，高频使用了这个方法去获得某Collection的所有元素
+**Collection.toArray()**：这个方法，在Collection子类各大集合的源码中，高频使用了这个方法去获得某Collection的所有元素
 
-`Arrays.copyOf(elementData, size, Object[].class)`：就是根据class的类型来决定是new 还是反射去构造一个泛型数组，同时利用native函数，批量赋值元素至新数组中
+**Arrays.copyOf(elementData, size, Object[].class)**：就是根据class的类型来决定是new 还是反射去构造一个泛型数组，同时利用native函数，批量赋值元素至新数组中
 
 ```java
     public static <T,U> T[] copyOf(U[] original, int newLength, Class<? extends T[]> newType) {
@@ -96,7 +96,7 @@ ArrayList是一个动态数组，它的底层数据结构是数组，他实现�
     }
 ```
 
-``System.arraycopy`：也是一个很高频的函数 
+**System.arraycopy()**：也是一个很高频的函数 
 
 ```java
 /*

@@ -209,7 +209,7 @@ int binarySearch(int[] nums, int target) {
 
 示意图
 
-![put流程图](https://github.com/LiLustre/MyDevStudy/blob/master/%E5%9B%BE%E7%89%87/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%B3%95.jpg?raw=true)
+![二分查找法](https://github.com/LiLustre/MyDevStudy/blob/master/%E5%9B%BE%E7%89%87/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%B3%95.jpg?raw=true)
 
 ### 删除
 

@@ -18,7 +18,7 @@
 3、**扰动函数**就是为了解决hash碰撞的。它会综合hash值高位和低位的特征，并存放在低位，因此在与运算时，相当于高低位一起参与了运算，以减少hash碰撞的概率
 
 数据结构如下
-![image](图片\HashMap数据结构.png)
+![image](https://github.com/LiLustre/MyDevStudy/blob/master/%E5%9B%BE%E7%89%87/HashMap%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png?raw=true)
 
 ### 源码分析
 #### 构造函数
@@ -115,7 +115,10 @@
 
 ```
 
+![put流程图](https://github.com/LiLustre/MyDevStudy/blob/master/%E5%9B%BE%E7%89%87/HashMap%20put%E6%96%B9%E6%B3%95%E6%B5%81%E7%A8%8B%E5%9B%BE.png?raw=true)
+
 ### 与HashTable的区别
+
 - 与之相比HashTable是线程安全的，且不允许key、value是null。
 - HashTable默认容量是11。
 - HashTable是直接使用key的hashCode(key.hashCode())作为hash值，不像HashMap内部使用static final int hash(Object key)扰动函数对key的hashCode进行扰动后作为hash值。

@@ -19,9 +19,8 @@
 
 需要随机访问元素时，时间效率很低，虽然底层在根据下标查询Node的时候，会根据index判断目标Node在前半段还是后半段，然后决定是顺序还是逆序查询，以提升时间效率。不过随着n的增大，总体时间效率依然很低
 
-
 LinkedList的数据结构如图
-![image](图片\linkedList链表结构.png)
+![image](https://github.com/LiLustre/MyDevStudy/blob/master/%E5%9B%BE%E7%89%87/linkedList%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.png?raw=true)
 
 
 ### 源码分析 
@@ -59,7 +58,8 @@ private static class Node<E> {
 #### 增加
 
 基本结构如图所示
-![image](图片\LinkedList添加元素.png)
+![image](https://github.com/LiLustre/MyDevStudy/blob/master/%E5%9B%BE%E7%89%87/LinkedList%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0.png?raw=true)
+
 ##### 批量增加
 1、链表批量增加，是靠for循环遍历原数组，依次执行插入节点操作。对比ArrayList是通过System.arraycopy完成批量增加的
 

@@ -185,6 +185,8 @@
 
 表中元素是按升序排列，将表中间位置记录的[关键字](https://baike.baidu.com/item/关键字)与查找关键字比较，如果两者相等，则查找成功；否则利用中间位置[记录](https://baike.baidu.com/item/记录/1837758)将表分成前、后两个子表，如果中间位置记录的关键字大于查找关键字，则进一步查找前一子表，否则进一步查找后一子表。重复以上过程，直到找到满足条件的[记录](https://baike.baidu.com/item/记录/1837758)，使查找成功，或直到子表不存在为止，此时查找不成功。
 
+简单示例如下
+
 ```java
 int binarySearch(int[] nums, int target) {
     int left = 0, right = ...;
@@ -202,4 +204,128 @@ int binarySearch(int[] nums, int target) {
     return ...;
 }
 ```
+
+
+
+示意图
+
+![put流程图](https://github.com/LiLustre/MyDevStudy/blob/master/%E5%9B%BE%E7%89%87/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%B3%95.jpg?raw=true)
+
+### 删除
+
+1、按照key删除 根据key 利用二分查找法查找索引位置，然后将Value数组的i位置的元素设置为DELETED
+
+2、然后将Value数组的i位置的元素设置为DELETED
+
+```
+    public void removeAt(int index) {
+        //根据index直接索引到对应位置 执行删除操作
+        if (mValues[index] != DELETED) {
+            mValues[index] = DELETED;
+            mGarbage = true;
+        }
+    }
+```
+
+```
+    public void removeAtRange(int index, int size) {
+    //越界修正
+        final int end = Math.min(mSize, index + size);
+        //for循环 执行单个删除操作
+        for (int i = index; i < end; i++) {
+            removeAt(i);
+        }
+    }
+```
+
+
+
+### 查
+
+**按照key查询**
+
+1、二分查找到 key 所在的index
+
+2、返回Values数组位置的元素
+
+```
+    //按照key查询，如果key不存在，返回null
+    public E get(int key) {
+        return get(key, null);
+    }
+
+    //按照key查询，如果key不存在，返回valueIfKeyNotFound
+    public E get(int key, E valueIfKeyNotFound) {
+        //二分查找到 key 所在的index
+        int i = ContainerHelpers.binarySearch(mKeys, mSize, key);
+        //不存在
+        if (i < 0 || mValues[i] == DELETED) {
+            return valueIfKeyNotFound;
+        } else {//存在
+            return (E) mValues[i];
+        }
+    }
+```
+
+
+
+**安装index查询**
+
+1、按照下标查询时，需要考虑是否先GC
+
+2、返回对应的key 或者Value
+
+```
+    public int keyAt(int index) {
+    //按照下标查询时，需要考虑是否先GC
+        if (mGarbage) {
+            gc();
+        }
+
+        return mKeys[index];
+    }
+    
+    public E valueAt(int index) {
+     //按照下标查询时，需要考虑是否先GC
+        if (mGarbage) {
+            gc();
+        }
+
+        return (E) mValues[index];
+    }
+```
+
+**查询下标：**
+
+1、按照value查询下标时，不像key一样使用的二分查找。是直接线性遍历去比较，而且不像其他集合类使用equals比较，这里直接使用的 ==
+
+2、如果有多个key 对应同一个value，则这里只会返回一个更靠前的index
+
+```
+    public int indexOfKey(int key) {
+     //查询下标时，也需要考虑是否先GC
+        if (mGarbage) {
+            gc();
+        }
+        //二分查找返回 对应的下标 ,可能是负数
+        return ContainerHelpers.binarySearch(mKeys, mSize, key);
+    }
+    public int indexOfValue(E value) {
+     //查询下标时，也需要考虑是否先GC
+        if (mGarbage) {
+            gc();
+        }
+        //不像key一样使用的二分查找。是直接线性遍历去比较，而且不像其他集合类使用equals比较，这里直接使用的 ==
+        //如果有多个key 对应同一个value，则这里只会返回一个更靠前的index
+        for (int i = 0; i < mSize; i++)
+            if (mValues[i] == value)
+                return i;
+
+        return -1;
+    }
+```
+
+
+
+
 

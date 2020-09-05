@@ -43,7 +43,7 @@ Launcher
 
 大致流程如下：
 
-![]([[https://lize1.gitee.io/mystudyphoto/Android/FrameWork/Activity%E8%B7%9F%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.png](https://lize1.gitee.io/mystudyphoto/Android/FrameWork/Activity跟启动流程.png)
+![](https://lize1.gitee.io/mystudyphoto/Android/FrameWork/Activity%E8%B7%9F%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.png)
 
 
 
@@ -51,7 +51,7 @@ Launcher
 
 
 
-
+阿达
 
 
 
